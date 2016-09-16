@@ -735,29 +735,6 @@
           }
         }
       ]
-    },
-    {
-      "path": "/CMakeLists.txt",
-      "changes": [
-        {
-          "action": "replace",
-          "marker": "find_package(Boost 1.58 QUIET REQUIRED COMPONENTS system filesystem thread date_time chrono regex serialization program_options)",
-          "parameters": {
-            "text": [
-              "find_package(Boost 1.55 QUIET REQUIRED COMPONENTS system filesystem thread date_time chrono regex serialization program_options)"
-            ]
-          }
-        },
-        {
-          "action": "replace",
-          "marker": "die(\"Could not find Boost libraries, please make sure you have installed Boost or libboost-all-dev (1.58) or the equivalent\")",
-          "parameters": {
-            "text": [
-              "  die(\"Could not find Boost libraries, please make sure you have installed Boost or libboost-all-dev (1.55) or the equivalent\")"
-            ]
-          }
-        }
-      ]
     }
   ]
 }

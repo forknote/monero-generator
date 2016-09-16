@@ -89,11 +89,6 @@ function installUbuntu {
     export CXXFLAGS="-std=gnu++11"
 
     doneMessage
-  else if [[ $DISTRIB_RELEASE == 14* ]] ; then
-    sudo apt-get update
-    sudo apt-get -y install build-essential python-dev gcc-4.8 g++-4.8 git cmake pkg-config libboost1.55-all-dev libunbound-dev libevent-dev
-
-    doneMessage
   else
     echo "Only Ubuntu 16.04 is supported"
   fi
