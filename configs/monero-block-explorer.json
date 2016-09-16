@@ -1,0 +1,13 @@
+{
+  "extensions": [
+    "core/monero.json",
+    "blockchain-explorer.json"
+  ],
+  "base_coin": {
+    "name": "monero",
+    "git": "https://github.com/monero-project/monero.git"
+  },
+  "core": {
+    "CRYPTONOTE_NAME": "monero-block-explorer"
+  }
+}

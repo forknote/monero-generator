@@ -1,0 +1,5 @@
+.DS_Store
+/generated_files
+config.json
+/extensions/core/cryptonotecoin.py
+/test/core/cryptonotecoin-test.sh
