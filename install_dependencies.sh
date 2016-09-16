@@ -85,13 +85,13 @@ function installUbuntu {
 
   if [[ $DISTRIB_RELEASE == 16* ]] ; then
     sudo apt-get update
-    sudo apt-get -y install build-essential python-dev gcc-4.9 g++-4.9 git cmake libboost1.58-all-dev librocksdb-dev
+    sudo apt-get -y install build-essential python-dev gcc-4.9 g++-4.9 git cmake pkg-config libboost1.58-all-dev libunbound-dev libevent-dev
     export CXXFLAGS="-std=gnu++11"
 
     doneMessage
   else if [[ $DISTRIB_RELEASE == 14* ]] ; then
     sudo apt-get update
-    sudo apt-get -y install build-essential python-dev gcc-4.8 g++-4.8 git cmake libboost1.55-all-dev
+    sudo apt-get -y install build-essential python-dev gcc-4.8 g++-4.8 git cmake pkg-config libboost1.55-all-dev libunbound-dev libevent-dev
 
     doneMessage
   else
