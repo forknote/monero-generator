@@ -52,7 +52,7 @@ function generate_coin {
 	echo "Make temporary ${__CONFIG_base_coin_name} copy..."
 	[ -d "${TEMP_PATH}" ] || mkdir -p "${TEMP_PATH}"
 	cp -af "${BASE_COIN_PATH}/." "${TEMP_PATH}"
-	cp ${BASE_COIN_PATH}/src/blocks/* ${TEMP_PATH}/src/blocks
+#	cp ${BASE_COIN_PATH}/src/blocks/* ${TEMP_PATH}/src/blocks
 
 	# Extensions
 	echo "Personalize base coin source..."
@@ -77,7 +77,7 @@ function generate_coin {
 	[ -d "${NEW_COIN_PATH}" ] || mkdir -p "${NEW_COIN_PATH}"
 	if [ ! -z "${UPDATES_PATH}"  ]; then
 		# Generate new coin
-		cd "${NEW_COIN_PATH}" && patch -s -p1 < "${UPDATES_PATH}" && cd "${SCRIPTS_PATH}"
+		cd -af "${NEW_COIN_PATH}" && patch -s -p1 < "${UPDATES_PATH}" && cd "${SCRIPTS_PATH}"
         chmod -R 755 ${NEW_COIN_PATH}
 
 		bash "${SCRIPTS_PATH}/compile.sh" -c "${COMPILE_ARGS}" -z
