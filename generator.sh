@@ -51,6 +51,7 @@ function generate_coin {
 
 	echo "Make temporary ${__CONFIG_base_coin_name} copy..."
 	[ -d "${TEMP_PATH}" ] || mkdir -p "${TEMP_PATH}"
+    chmod -R 755 ${BASE_COIN_PATH}
 	cp -af "${BASE_COIN_PATH}/." "${TEMP_PATH}"
 
 	# Extensions
