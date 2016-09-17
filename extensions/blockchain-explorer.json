@@ -84,16 +84,6 @@
               ""
             ]
           }
-        },
-        {
-          "action": "add_bellow",
-          "marker": "bi.bi_coins = *(uint64_t *)v.mv_data;",
-          "parameters": {
-            "text": [
-              "      // Don't really need this",
-              "      bi.bi_txs = 0;"
-            ]
-          }
         }
       ]
     },
@@ -731,6 +721,34 @@
               "  };",
               "};",
               ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/tests/unit_tests/blockchain_db.cpp",
+      "changes": [
+        {
+          "action": "add_bellow",
+          "marker": "ASSERT_EQ(t_coins[0], this->m_db->get_block_already_generated_coins(0));",
+          "parameters": {
+            "text": [
+              "  ASSERT_EQ(t_coins[0], this->m_db->get_block_already_generated_transactions(0));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/tests/unit_tests/hardfork.cpp",
+      "changes": [
+        {
+          "action": "add_bellow",
+          "marker": "virtual uint64_t get_block_already_generated_coins(const uint64_t& height) const { return 10000000000; }",
+          "parameters": {
+            "text": [
+              "  virtual uint64_t get_block_already_generated_transactions(const uint64_t& height) const { return 100; }"
             ]
           }
         }
