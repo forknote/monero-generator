@@ -9,11 +9,11 @@
       "path": "/contrib/epee/include/net/http_server_handlers_map2.h",
       "changes": [
         {
-          "action": "add_above",
+          "action": "add_bellow",
           "marker": "response.m_response_comment = \"Ok\"; \\",
           "parameters": {
             "text": [
-              "  response.m_additional_fields.push_back(std::make_pair(\"Access-Control-Allow-Origin\", \"*\")); "
+              "  response.m_additional_fields.push_back(std::make_pair(\"Access-Control-Allow-Origin\", \"*\")); \\"
             ]
           }
         }
