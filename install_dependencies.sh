@@ -83,14 +83,20 @@ function installUbuntu {
   # print commands
   set -x
 
-  if [[ $DISTRIB_RELEASE == 16* ]] ; then
+  if [[ $DISTRIB_RELEASE == 16.04* ]] ; then
     sudo apt-get update
     sudo apt-get -y install build-essential python-dev gcc-4.9 g++-4.9 git cmake pkg-config libboost1.58-all-dev libunbound-dev libevent-dev  libssl-dev
     export CXXFLAGS="-std=gnu++11"
 
     doneMessage
+  elif [[ $DISTRIB_RELEASE == 16.10* ]] ; then
+    sudo apt-get update
+    sudo apt-get -y install build-essential python-dev gcc-4.9 g++-4.9 git cmake pkg-config libboost1.61-all-dev libunbound-dev libevent-dev  libssl-dev
+    export CXXFLAGS="-std=gnu++11"
+
+    doneMessage
   else
-    echo "Only Ubuntu 16.04 is supported"
+    echo "Only Ubuntu 16.04 and 16.10 is supported"
   fi
 }
 
