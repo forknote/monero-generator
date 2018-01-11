@@ -41,7 +41,6 @@ def findReplace(directory, find, replace, filePattern):
             s = s.decode('utf-8', errors='ignore').encode('utf-8').replace(find, replace)
             with open(filepath, "w") as f:
                 f.write(s)
-            os.chmod(filepath, int(str(oct(stats.st_mode))[3:], 8))
 
 def text_creator(change):
     replace_text = ''
@@ -125,6 +124,7 @@ if not (set(required_extensions) <= set(loaded_extensions)):
 
 for file in extension['files']:
     # Bulk replace text
+
     if 'action' in file.keys() and file['action'] == 'bulk_replace':
         if 'find' in file.keys() and 'replace' in file.keys() and 'file_pattern' in file.keys():
             sys.__stdout__.write("- Bulk replacing " + file['find'] + " with " + file['replace'] + "\n")

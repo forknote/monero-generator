@@ -27,7 +27,7 @@ function finish {
 }
 trap finish EXIT
 
-# Generate source code and compile 
+# Generate source code and compile
 function generate_coin {
 	# Define coin paths
 	export BASE_COIN_PATH="${WORK_FOLDERS_PATH}/${__CONFIG_base_coin_name}"
@@ -80,7 +80,7 @@ function generate_coin {
 		cd "${NEW_COIN_PATH}" && patch -s -p1 < "${UPDATES_PATH}" && cd "${SCRIPTS_PATH}"
         chmod -R 755 ${NEW_COIN_PATH}
 		cp ${TEMP_PATH}/src/blocks/* ${NEW_COIN_PATH}/src/blocks
-		
+
 		bash "${SCRIPTS_PATH}/compile.sh" -c "${COMPILE_ARGS}" -z
 	fi
 }
@@ -95,7 +95,7 @@ Reads a config file and creates and compiles Cryptonote coin. "config.json" as d
     -f          config file
     -c          compile arguments
 EOF
-}   
+}
 
 # A POSIX variable
 OPTIND=1         # Reset in case getopts has been used previously in the shell.
@@ -125,7 +125,7 @@ if [[ "${CONFIG_FILE}" != /* ]]; then
 fi
 
 if [ ! -f ${CONFIG_FILE} ]; then
-	echo "ERROR: config file does not exits"	
+	echo "ERROR: config file does not exits"
 	exit
 fi
 

@@ -32,7 +32,7 @@ if [[ "$OSTYPE" == "msys" ]]; then
 	cmake -G "Visual Studio 12 Win64" "..\.."
 	msbuild.exe Bytecoin.sln /property:Configuration=Release ${COMPILE_ARGS}
 else
-	make release-static
+	make release-static ${COMPILE_ARGS}
 fi
 
 if [[ $? == "0" ]]; then

@@ -468,6 +468,18 @@
       "path": "/src/blocks/blocks.dat",
       "action": "add",
       "source": "/aeon/files/blocks.dat"
+    },
+    {
+      "action": "bulk_replace",
+      "find": "monerod",
+      "replace": "aeond",
+      "file_pattern": "*"
+    },
+    {
+      "action": "bulk_replace",
+      "find": "monero-",
+      "replace": "aeon-",
+      "file_pattern": "*"
     }
   ]
 }
