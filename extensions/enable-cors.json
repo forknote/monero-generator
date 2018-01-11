@@ -9,7 +9,7 @@
       "path": "/contrib/epee/include/net/http_server_handlers_map2.h",
       "changes": [
         {
-          "action": "add_bellow",
+          "action": "add_below",
           "marker": "response.m_response_comment = \"Ok\"; \\",
           "parameters": {
             "text": [

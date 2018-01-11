@@ -3,5 +3,538 @@
   "description": "Makes essensial parameters editable.",
   "required": [],
   "files": [
+    {
+      "path": "/src/cryptonote_config.h",
+      "changes": [
+        {
+          "action": "replace",
+          "marker": "#define CRYPTONOTE_NAME",
+          "parameters": {
+            "text": [
+              "#define CRYPTONOTE_NAME                         \"%s\""
+            ],
+            "var": "CRYPTONOTE_NAME"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "uint16_t const P2P_DEFAULT_PORT = 18080;",
+          "parameters": {
+            "text": [
+              "uint16_t const P2P_DEFAULT_PORT  =  %s;"
+            ],
+            "var": "MAINNET_P2P_DEFAULT_PORT"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "uint16_t const RPC_DEFAULT_PORT = 18081;",
+          "parameters": {
+            "text": [
+              "uint16_t const RPC_DEFAULT_PORT =  %s;"
+            ],
+            "var": "MAINNET_RPC_DEFAULT_PORT"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "uint16_t const ZMQ_RPC_DEFAULT_PORT = 18082;",
+          "parameters": {
+            "text": [
+              "uint16_t const ZMQ_RPC_DEFAULT_PORT =  %s;"
+            ],
+            "var": "MAINNET_ZMQ_RPC_DEFAULT_PORT"
+          }
+        },
+
+
+        {
+          "action": "replace",
+          "marker": "uint16_t const P2P_DEFAULT_PORT = 28080;",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "uint16_t const P2P_DEFAULT_PORT  =  %s;"
+            ],
+            "var": "TESTNET_P2P_DEFAULT_PORT"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "uint16_t const RPC_DEFAULT_PORT = 28081;",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "uint16_t const RPC_DEFAULT_PORT =  %s;"
+            ],
+            "var": "TESTNET_RPC_DEFAULT_PORT"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "uint16_t const ZMQ_RPC_DEFAULT_PORT = 28082;",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "uint16_t const ZMQ_RPC_DEFAULT_PORT =  %s;"
+            ],
+            "var": "TESTNET_ZMQ_RPC_DEFAULT_PORT"
+          }
+        },
+
+
+        {
+          "action": "replace",
+          "marker": "uint64_t const CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX = 18;",
+          "parameters": {
+            "text": [
+              "uint64_t const CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX = %s;"
+            ],
+            "var": "CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX"
+          }
+        },
+
+        {
+          "action": "replace",
+          "marker": "uint64_t const CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX = 19;",
+          "parameters": {
+            "text": [
+              "uint64_t const CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX = %s;"
+            ],
+            "var": "CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "uint64_t const CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX = 42;",
+          "parameters": {
+            "text": [
+              "uint64_t const CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX = %s;"
+            ],
+            "var": "CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "0x12 ,0x30, 0xF1, 0x71 , 0x61, 0x04 , 0x41, 0x61, 0x17, 0x31, 0x00, 0x82, 0x16, 0xA1, 0xA1, 0x10",
+          "parameters": {
+            "text": [
+              "%s"
+            ],
+            "var": "MAINNET_NETWORK_ID"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "0x12 ,0x30, 0xF1, 0x71 , 0x61, 0x04 , 0x41, 0x61, 0x17, 0x31, 0x00, 0x82, 0x16, 0xA1, 0xA1, 0x11",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "%s"
+            ],
+            "var": "TESTNET_NETWORK_ID"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "std::string const GENESIS_TX = \"013c01ff0001ffffffffffff03029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121017767aafcde9be00dcfd098715ebcf7f410daebc582fda69d24a28e9d0bc890d1\";",
+          "parameters": {
+            "text": [
+              "std::string const GENESIS_TX = \"%s\";"
+            ],
+            "var": "MAINNET_GENESIS_TX"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "std::string const GENESIS_TX = \"013c01ff0001ffffffffffff0f029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd0880712101168d0c4ca86fb55a4cf6a36d31431be1c53a3bd7411bb24e8832410289fa6f3b\";",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "std::string const GENESIS_TX = \"%s\";"
+            ],
+            "var": "TESTNET_GENESIS_TX"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "#define MONEY_SUPPLY",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "#define MONEY_SUPPLY ((uint64_t)%s)"
+            ],
+            "var": "MONEY_SUPPLY"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "#define EMISSION_SPEED_FACTOR_PER_MINUTE",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "#define EMISSION_SPEED_FACTOR_PER_MINUTE (%s)"
+            ],
+            "var": "EMISSION_SPEED_FACTOR"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "#define FINAL_SUBSIDY_PER_MINUTE",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "#define FINAL_SUBSIDY_PER_MINUTE ((uint64_t)%s)"
+            ],
+            "var": "FINAL_SUBSIDY_PER_MINUTE"
+          }
+        },
+
+
+        {
+          "action": "replace",
+          "marker": "#define DIFFICULTY_TARGET_V2",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "#define DIFFICULTY_TARGET_V2 %s"
+            ],
+            "var": "DIFFICULTY_TARGET_V2"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "#define DIFFICULTY_TARGET_V1",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "#define DIFFICULTY_TARGET_V1 %s"
+            ],
+            "var": "DIFFICULTY_TARGET_V1"
+          }
+        },
+
+
+        {
+          "action": "replace",
+          "marker": "#define DIFFICULTY_WINDOW",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "#define DIFFICULTY_WINDOW %s"
+            ],
+            "var": "DIFFICULTY_WINDOW"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "#define DIFFICULTY_CUT",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "#define %s"
+            ],
+            "var": "DIFFICULTY_CUT"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "#define DIFFICULTY_LAG",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "#define DIFFICULTY_LAG %s"
+            ],
+            "var": "DIFFICULTY_LAG"
+          }
+        },
+
+        {
+          "action": "replace",
+          "marker": "#define CRYPTONOTE_DISPLAY_DECIMAL_POINT",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "#define CRYPTONOTE_DISPLAY_DECIMAL_POINT %s"
+            ],
+            "var": "CRYPTONOTE_DISPLAY_DECIMAL_POINT"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "#define COIN",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "#define COIN ((uint64_t)%s)"
+            ],
+            "var": "COIN"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "uint64_t const DEFAULT_DUST_THRESHOLD = ((uint64_t)2000000000);",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "uint64_t const DEFAULT_DUST_THRESHOLD = ((uint64_t)%s);"
+            ],
+            "var": "DEFAULT_DUST_THRESHOLD"
+          }
+        }
+      ]
+    },
+
+    {
+      "path": "/src/p2p/net_node.inl",
+      "multiline": true,
+      "changes": [
+        {
+          "action": "replace",
+          "marker": "(std::set<std::string> full_addrs;)[^@]+(return full_addrs;)",
+          "parameters": {
+            "text": [
+              "\\1\\n    if (testnet) {\\n    } else {\\n%MAINNET_SEED_NODES%\\n    }\\n    \\2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/src/p2p/net_node.inl",
+      "changes": [
+        {
+          "action": "replace",
+          "marker": "%MAINNET_SEED_NODES%",
+          "parameters": {
+            "text": [
+              "%s"
+            ],
+            "var": "MAINNET_SEED_NODES"
+          }
+        }
+      ]
+    },
+    {
+      "path": "/src/checkpoints/checkpoints.cpp",
+      "multiline": true,
+      "changes": [
+        {
+          "action": "replace",
+          "marker": "(static const std::vector<std::string> dns_urls = {)[^}]+(};)",
+          "parameters": {
+            "text": [
+              "\\1\\n\\2"
+            ]
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "(static const std::vector<std::string> testnet_dns_urls = {)[^}]+(};)",
+          "parameters": {
+            "text": [
+              "\\1\\n\\2"
+            ]
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "(bool checkpoints::init_default_checkpoints\\(bool testnet\\))[^@]+(bool checkpoints::load_checkpoints_from_json\\(const std::string &json_hashfile_fullpath\\))",
+          "parameters": {
+            "text": [
+              "\\1\\n{\\n  if (testnet) {\\n    return true;  \\n} \\n%MAINNET_CHECKPOINTS%\\n  return true;\\n}\\n\\n\\2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/src/checkpoints/checkpoints.cpp",
+      "changes": [
+        {
+          "action": "replace",
+          "marker": "%MAINNET_CHECKPOINTS%",
+          "parameters": {
+            "text": [
+              "%s"
+            ],
+            "replace_text_alt": [
+              ""
+            ],
+            "var": "MAINNET_CHECKPOINTS"
+          }
+        }
+      ]
+    },
+    {
+      "path": "/src/common/updates.cpp",
+      "multiline": true,
+      "changes": [
+        {
+          "action": "replace",
+          "marker": "(static const std::vector<std::string> dns_urls = {)[^@]+(};)",
+          "parameters": {
+            "text": [
+              "\\1\\n\\2"
+            ]
+          }
+        }
+      ]
+    },
+
+    {
+      "path": "/src/cryptonote_core/blockchain.cpp",
+      "multiline": true,
+      "changes": [
+        {
+          "action": "replace",
+          "marker": "(} mainnet_hard_forks\\[\\] = {)[^;]+(};)",
+          "parameters": {
+            "text": [
+              "\\1\\n%MAINNET_HARDFORKS%\\n\\2"
+            ]
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "(} testnet_hard_forks\\[\\] = {)[^;]+(};)",
+          "parameters": {
+            "text": [
+              "\\1\\n%TESTNET_HARDFORKS%\\n\\2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/src/cryptonote_core/blockchain.cpp",
+      "changes": [
+
+          {
+            "action": "add_above",
+            "marker": "bool valid = hash == m_blocks_hash_of_hashes[n];",
+            "parameters": {
+              "text": [
+                  "MWARNING(\"block: \" << height << \" - \" << epee::string_tools::pod_to_hex(hashes.front()));",
+                  "MWARNING(\"block: \" << height + hashes.size() << \" - \" << epee::string_tools::pod_to_hex(hashes.back()));",
+                  "MWARNING(\"first_index: \" << first_index << \" - \" << last_index);"
+                ]
+            }
+          },
+
+        {
+          "action": "replace",
+          "marker": "%MAINNET_HARDFORKS%",
+          "parameters": {
+            "text": [
+              "%s"
+            ],
+            "var": "MAINNET_HARDFORKS"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "%TESTNET_HARDFORKS%",
+          "parameters": {
+            "text": [
+              "%s"
+            ],
+            "replace_text_alt": [
+              ""
+            ],
+            "var": "TESTNET_HARDFORKS"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "static const uint64_t mainnet_hard_fork_version_1_till = 1009826;",
+          "parameters": {
+            "text": [
+              "static const uint64_t mainnet_hard_fork_version_1_till = %s;"
+            ],
+            "var": "MAINNET_HARDFORK_V1_LAST_BLOCK"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "static const uint64_t testnet_hard_fork_version_1_till = 624633;",
+          "parameters": {
+            "text": [
+              "static const uint64_t testnet_hard_fork_version_1_till = %s;"
+            ],
+            "replace_text_alt": [
+              "static const uint64_t testnet_hard_fork_version_1_till = 1;"
+            ],
+            "var": "TESTNET_HARDFORK_V1_LAST_BLOCK"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "LOG_ERROR(\"WARNING: local blockchain failed to pass a MoneroPulse checkpoint, and you could be on a fork. You should either sync up from scratch, OR download a fresh blockchain bootstrap, OR enable checkpoint enforcing with the --enforce-dns-checkpointing command-line option\");",
+          "parameters": {
+            "text": [
+              "        LOG_ERROR(\"WARNING: local blockchain failed to pass a %sPulse checkpoint, and you could be on a fork. You should either sync up from scratch, OR download a fresh blockchain bootstrap, OR enable checkpoint enforcing with the --enforce-dns-checkpointing command-line option\");"
+            ],
+            "var": "COIN_NAME"
+          }
+        }
+      ]
+    },
+
+
+
+    {
+      "path": "/src/common/dns_utils.cpp",
+      "changes": [
+        {
+          "action": "replace",
+          "marker": "LOG_PRINT_L0(\"WARNING: no two valid MoneroPulse DNS checkpoint records were received\");",
+          "parameters": {
+            "text": [
+              "    LOG_PRINT_L0(\"WARNING: no two valid %sPulse DNS checkpoint records were received\");"
+            ],
+            "var": "COIN_NAME"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "LOG_PRINT_L0(\"WARNING: no two MoneroPulse DNS checkpoint records matched\");",
+          "parameters": {
+            "text": [
+              "    LOG_PRINT_L0(\"WARNING: no two %sPulse DNS checkpoint records matched\");"
+            ],
+            "var": "COIN_NAME"
+          }
+        }
+      ]
+    },
+
+    {
+      "path": "/src/blocks/blocks.dat",
+      "action": "remove"
+    },
+    {
+      "path": "/src/blocks/checkpoints.dat",
+      "action": "remove"
+    },
+    {
+      "path": "/src/blocks/testnet_blocks.dat",
+      "action": "remove"
+    },
+    {
+      "path": "/src/blocks/blocks.dat",
+      "action": "add",
+      "source": "/monero/files/blocks.dat"
+    },
+    {
+      "path": "/src/blocks/checkpoints.dat",
+      "action": "add",
+      "source": "/monero/files/checkpoints.dat"
+    },
+    {
+      "path": "/src/blocks/testnet_blocks.dat",
+      "action": "add",
+      "source": "/monero/files/testnet_blocks.dat"
+    }
   ]
 }

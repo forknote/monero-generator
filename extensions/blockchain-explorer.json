@@ -9,7 +9,7 @@
       "path": "/src/blockchain_db/blockchain_db.h",
       "changes": [
         {
-          "action": "add_bellow",
+          "action": "add_below",
           "marker": "virtual uint64_t get_block_already_generated_coins(const uint64_t& height) const = 0;",
           "parameters": {
             "text": [
@@ -23,7 +23,7 @@
       "path": "/src/blockchain_db/lmdb/db_lmdb.h",
       "changes": [
         {
-          "action": "add_bellow",
+          "action": "add_below",
           "marker": "virtual uint64_t get_block_already_generated_coins(const uint64_t& height) const;",
           "parameters": {
             "text": [
@@ -37,7 +37,7 @@
       "path": "/src/blockchain_db/lmdb/db_lmdb.cpp",
       "changes": [
         {
-          "action": "add_bellow",
+          "action": "add_below",
           "marker": "uint64_t bi_coins;",
           "parameters": {
             "text": [
@@ -46,7 +46,7 @@
           }
         },
         {
-          "action": "add_bellow",
+          "action": "add_below",
           "marker": "bi.bi_coins = coins_generated;",
           "parameters": {
             "text": [
@@ -91,7 +91,7 @@
       "path": "/src/cryptonote_core/blockchain.h",
       "changes": [
         {
-          "action": "add_bellow",
+          "action": "add_below",
           "marker": "Blockchain(tx_memory_pool& tx_pool);",
           "parameters": {
             "text": [
@@ -106,7 +106,7 @@
       "path": "/src/cryptonote_core/blockchain.cpp",
       "changes": [
         {
-          "action": "add_bellow",
+          "action": "add_below",
           "marker": "static const uint64_t testnet_hard_fork_version_1_till = 624633;",
           "parameters": {
             "text": [
@@ -147,7 +147,7 @@
       "path": "/src/rpc/core_rpc_server.h",
       "changes": [
         {
-          "action": "add_bellow",
+          "action": "add_below",
           "marker": "MAP_JON_RPC_WE(\"get_version\",            on_get_version,                COMMAND_RPC_GET_VERSION)",
           "parameters": {
             "text": [
@@ -730,7 +730,7 @@
       "path": "/tests/unit_tests/blockchain_db.cpp",
       "changes": [
         {
-          "action": "add_bellow",
+          "action": "add_below",
           "marker": "ASSERT_EQ(t_coins[0], this->m_db->get_block_already_generated_coins(0));",
           "parameters": {
             "text": [
@@ -744,7 +744,7 @@
       "path": "/tests/unit_tests/hardfork.cpp",
       "changes": [
         {
-          "action": "add_bellow",
+          "action": "add_below",
           "marker": "virtual uint64_t get_block_already_generated_coins(const uint64_t& height) const { return 10000000000; }",
           "parameters": {
             "text": [

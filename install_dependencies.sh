@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Template: OpenBazaar 
+# Template: OpenBazaar
 #
 # install_dependencies.sh - Setup your Cryptonote development environment in one step.
 #
@@ -63,7 +63,8 @@ function installMac {
   fi
 
   # install gpg/sqlite3/python/wget/openssl/zmq if they aren't installed
-  for dep in cmake boost python
+  brew tap jmuncaster/homebrew-header-only
+  for dep in cmake boost python libevent pkgconfig jmuncaster/header-only/cppzmq
   do
     if ! command_exists $dep ; then
       brew install $dep
