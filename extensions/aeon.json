@@ -477,8 +477,44 @@
     },
     {
       "action": "bulk_replace",
-      "find": "monero-",
-      "replace": "aeon-",
+      "find": "#monero-dev",
+      "replace": "#aeon",
+      "file_pattern": "*"
+    },
+    {
+      "action": "bulk_replace",
+      "find": "monero-wallet-cli",
+      "replace": "aeon-wallet-cli",
+      "file_pattern": "*"
+    },
+    {
+      "action": "bulk_replace",
+      "find": "monero-wallet-rpc",
+      "replace": "aeon-wallet-rpc",
+      "file_pattern": "*"
+    },
+    {
+      "action": "bulk_replace",
+      "find": "monero-blockchain-export",
+      "replace": "aeon-blockchain-export",
+      "file_pattern": "*"
+    },
+    {
+      "action": "bulk_replace",
+      "find": "monero-blockchain-import",
+      "replace": "aeon-blockchain-import",
+      "file_pattern": "*"
+    },
+    {
+      "action": "bulk_replace",
+      "find": "monero-gen-trusted-multisig",
+      "replace": "aeon-gen-trusted-multisig",
+      "file_pattern": "*"
+    },
+    {
+      "action": "bulk_replace",
+      "find": "https://github.com/monero-project/monero",
+      "replace": "https://github.com/aeonix/aeon",
       "file_pattern": "*"
     }
   ]
