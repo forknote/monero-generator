@@ -162,7 +162,7 @@
           "parameters": {
             "mandatory": false,
             "text": [
-              "#define MONEY_SUPPLY ((uint64_t)%s)"
+              "#define MONEY_SUPPLY ((uint64_t)(%s))"
             ],
             "var": "MONEY_SUPPLY"
           }
@@ -184,7 +184,7 @@
           "parameters": {
             "mandatory": false,
             "text": [
-              "#define FINAL_SUBSIDY_PER_MINUTE ((uint64_t)%s)"
+              "#define FINAL_SUBSIDY_PER_MINUTE ((uint64_t)(%s))"
             ],
             "var": "FINAL_SUBSIDY_PER_MINUTE"
           }
@@ -266,7 +266,7 @@
           "parameters": {
             "mandatory": false,
             "text": [
-              "#define COIN ((uint64_t)%s)"
+              "#define COIN ((uint64_t)(%s))"
             ],
             "var": "COIN"
           }
@@ -277,7 +277,7 @@
           "parameters": {
             "mandatory": false,
             "text": [
-              "uint64_t const DEFAULT_DUST_THRESHOLD = ((uint64_t)%s);"
+              "uint64_t const DEFAULT_DUST_THRESHOLD = ((uint64_t)(%s));"
             ],
             "var": "DEFAULT_DUST_THRESHOLD"
           }
