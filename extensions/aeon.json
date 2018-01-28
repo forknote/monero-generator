@@ -82,10 +82,63 @@
             ],
             "var": "MEMORY_MULTIPLIER_V1HF"
           }
+        },
+
+
+        {
+          "description": "NO_FEE_PER_KB",
+          "action": "add_above",
+          "marker": "#define FEE_PER_KB_OLD",
+          "parameters": {
+            "text": [
+              "#define MINIMUM_RELAY_FEE                     %s"
+            ],
+            "replace_text_alt": [
+              "#define MINIMUM_RELAY_FEE                0"
+            ],
+            "var": "MINIMUM_RELAY_FEE"
+          }
         }
       ]
     },
-
+    {
+      "path": "/src/cryptonote_config.h",
+      "changes": [
+        {
+          "description": "NO_FEE_PER_KB",
+          "action": "add_above",
+          "marker": "#define FEE_PER_KB_OLD",
+          "parameters": {
+            "text": [
+              "#define DEFAULT_FEE                     %s"
+            ],
+            "replace_text_alt": [
+              "#define DEFAULT_FEE                0"
+            ],
+            "var": "DEFAULT_FEE"
+          }
+        }
+      ]
+    },
+    {
+      "path": "/src/cryptonote_config.h",
+      "changes": [
+        {
+          "description": "NO_FEE_PER_KB",
+          "action": "add_above",
+          "marker": "#define FEE_PER_KB_OLD",
+          "parameters": {
+            "text": [
+              "#define NO_FEE_PER_KB_FEE_MAX_HEIGHT                     %s"
+            ],
+            "replace_text_alt": [
+              "#define NO_FEE_PER_KB_FEE_MAX_HEIGHT                0"
+            ],
+            "var": "NO_FEE_PER_KB_FEE_MAX_HEIGHT"
+          }
+        }
+      ]
+    },
     {
       "path": "/src/crypto/slow-hash.c",
       "changes": [
@@ -143,6 +196,10 @@
               "  cn_slow_hash_with_multiplier(data, length, hash, 1);",
               "}",
               "",
+              "void cn_slow_hash_with_multiplier_test(const void *data, size_t length, char *hash) {",
+              "  cn_slow_hash_with_multiplier(data, length, hash, 0.5);",
+              "}",
+              "",
               "void cn_slow_hash_with_multiplier(const void *data, size_t length, char *hash, double memory_multiplier) {"
             ]
           }
@@ -155,6 +212,11 @@
               "void cn_slow_hash(const void *data, size_t length, char *hash)",
               "{",
               "  cn_slow_hash_with_multiplier(data, length, hash, 1);",
+              "}",
+              "",
+              "void cn_slow_hash_with_multiplier_test(const void *data, size_t length, char *hash)",
+              "{",
+              "  cn_slow_hash_with_multiplier(data, length, hash, 0.5);",
               "}",
               "",
               "void cn_slow_hash_with_multiplier(const void *data, size_t length, char *hash, double memory_multiplier)"
@@ -209,7 +271,9 @@
           "marker": "void cn_slow_hash(const void *data, size_t length, char *hash);",
           "parameters": {
             "text": [
-              "void cn_slow_hash_with_multiplier(const void *data, size_t length, char *hash, double memory_multiplier);"            ]
+              "void cn_slow_hash_with_multiplier_test(const void *data, size_t length, char *hash);",
+              "void cn_slow_hash_with_multiplier(const void *data, size_t length, char *hash, double memory_multiplier);"
+            ]
           }
         }
       ]
@@ -222,6 +286,10 @@
           "marker": "inline void cn_slow_hash(const void *data, std::size_t length, hash &hash) {",
           "parameters": {
             "text": [
+              "inline void cn_slow_hash_with_multiplier_test(const void *data, std::size_t length, hash &hash) {",
+              "  cn_slow_hash_with_multiplier_test(data, length, reinterpret_cast<char *>(&hash));",
+              "}",
+              "",
               "inline void cn_slow_hash_with_multiplier(const void *data, std::size_t length, hash &hash, double memory_multiplier) {",
               "  cn_slow_hash_with_multiplier(data, length, reinterpret_cast<char *>(&hash), memory_multiplier);",
               "}",
@@ -338,7 +406,7 @@
           "marker": "crypto::cn_slow_hash(bd.data(), bd.size(), res);",
           "parameters": {
             "text": [
-              "    size_t memory_multiplier = 1;",
+              "    double memory_multiplier = 1;",
               "    if (height >= MAINNET_HARDFORK_V1HF)",
               "      memory_multiplier = MEMORY_MULTIPLIER_V1HF;",
               "    crypto::cn_slow_hash_with_multiplier(bd.data(), bd.size(), res, memory_multiplier);"
@@ -363,6 +431,48 @@
     },
 
     {
+      "path": "/src/wallet/wallet2.cpp",
+      "changes": [
+        {
+          "description": "NO_FEE_PER_KB",
+          "action": "replace",
+          "marker": "uint64_t needed_fee = calculate_fee(fee_per_kb, estimated_tx_size, fee_multiplier);",
+          "parameters": {
+            "text": [
+              "  uint64_t needed_fee = 0;",
+              "  if (NO_FEE_PER_KB_FEE_MAX_HEIGHT <= m_blockchain.size())",
+              "    needed_fee = calculate_fee(DEFAULT_FEE, 1, fee_multiplier);",
+              "  else",
+              "    needed_fee = calculate_fee(fee_per_kb, estimated_tx_size, fee_multiplier);"
+            ]
+          }
+        }
+      ]
+    },
+
+    {
+      "path": "/src/wallet/wallet2.cpp",
+      "multiline": true,
+      "changes": [
+        {
+          "description": "NO_FEE_PER_KB",
+          "action": "replace",
+          "marker": "transfer\\(dst_vector, fake_outs_count, unused_transfers_indices, unlock_time, needed_fee, extra, tx, ptx, trusted_daemon\\);[^a]+auto txBlob = t_serializable_object_to_blob\\(ptx.tx\\);[^n]+needed_fee = calculate_fee\\(fee_per_kb, txBlob, fee_multiplier\\);",
+          "parameters": {
+            "text": [
+              "transfer(dst_vector, fake_outs_count, unused_transfers_indices, unlock_time, needed_fee, extra, tx, ptx, trusted_daemon);",
+              "  auto txBlob = t_serializable_object_to_blob(ptx.tx);",
+              "  if (NO_FEE_PER_KB_FEE_MAX_HEIGHT <= m_blockchain.size())",
+              "    needed_fee = calculate_fee(DEFAULT_FEE, 1, fee_multiplier);",
+              "  else",
+              "    needed_fee = calculate_fee(fee_per_kb, txBlob, fee_multiplier);"
+            ]
+          }
+        }
+      ]
+    },
+
+    {
       "path": "/src/cryptonote_core/tx_pool.h",
       "changes": [
         {
@@ -380,6 +490,21 @@
     {
       "path": "/src/cryptonote_core/tx_pool.cpp",
       "changes": [
+      {
+          "description": "NO_FEE_PER_KB",
+          "action": "add_below",
+          "marker": "fee = inputs_amount - outputs_amount;",
+          "parameters": {
+            "text": [
+              "      if (!kept_by_block && fee < MINIMUM_RELAY_FEE)",
+              "      {",
+              "        LOG_PRINT_L1(\"transaction fee is not enough: \" << print_money(fee) << \", minumim fee: \" << print_money(DEFAULT_FEE));",
+              "        tvc.m_verifivation_failed = true;",
+              "        return false;",
+              "      }"
+            ]
+          }
+        },
         {
           "action": "replace",
           "marker": "bool tx_memory_pool::fill_block_template(block &bl, size_t median_size, uint64_t already_generated_coins, size_t &total_size, uint64_t &fee, uint64_t &expected_reward, uint8_t version)",
@@ -413,8 +538,6 @@
         }
       ]
     },
-
-
     {
       "path": "/src/cryptonote_basic/difficulty.h",
       "changes": [
@@ -464,6 +587,84 @@
         }
       ]
     },
+
+    {
+      "path": "/tests/performance_tests/CMakeLists.txt",
+      "changes": [
+        {
+          "action": "add_below",
+          "marker": "cn_slow_hash.h",
+          "parameters": {
+            "text": [
+              "  cn_slow_hash_with_multiplier_test.h"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/tests/hash/CMakeLists.txt",
+      "changes": [
+        {
+          "action": "replace",
+          "marker": "foreach (hash IN ITEMS fast slow tree extra-blake extra-groestl extra-jh extra-skein)",
+          "parameters": {
+            "text": [
+              "foreach (hash IN ITEMS fast slow slow-with-multiplier tree extra-blake extra-groestl extra-jh extra-skein)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/tests/hash/main.cpp",
+      "changes": [
+        {
+          "action": "replace",
+          "marker": "} hashes[] = {{\"fast\", cn_fast_hash}, {\"slow\", cn_slow_hash}, {\"tree\", hash_tree},",
+          "parameters": {
+            "text": [
+              "} hashes[] = {{\"fast\", cn_fast_hash}, {\"slow\", cn_slow_hash}, {\"slow-with-multiplier\", cn_slow_hash_with_multiplier_test}, {\"tree\", hash_tree},"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/tests/performance_tests/main.cpp",
+      "changes": [
+        {
+          "action": "add_below",
+          "marker": "#include \"cn_slow_hash.h\"",
+          "parameters": {
+            "text": [
+              "#include \"cn_slow_hash_with_multiplier_test.h\""
+            ]
+          }
+        },
+        {
+          "action": "add_below",
+          "marker": "test_cn_slow_hash);",
+          "parameters": {
+            "text": [
+              "  TEST_PERFORMANCE0(test_cn_slow_hash_with_multiplier_test);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/tests/performance_tests/cn_slow_hash_with_multiplier_test.h",
+      "action": "add",
+      "source": "/aeon/files/tests/performance_tests/cn_slow_hash_with_multiplier_test.h"
+    },
+    {
+      "path": "/tests/hash/tests-slow-with-multiplier.txt",
+      "action": "add",
+      "source": "/aeon/files/tests/hash/tests-slow-with-multiplier.txt"
+    },
+
+
     {
       "path": "/src/blocks/blocks.dat",
       "action": "add",

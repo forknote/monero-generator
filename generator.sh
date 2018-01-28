@@ -42,6 +42,12 @@ function generate_coin {
 		git clone "${__CONFIG_base_coin_git}" "${BASE_COIN_PATH}"
 	fi
 
+	if [[ ! -z $BRANCH ]]; then
+		cd "${BASE_COIN_PATH}"
+		git checkout ${BRANCH}
+		cd "${PROJECT_DIR}"
+	fi
+
 	# Exit if base coin does not exists
 	if [ ! -d "${BASE_COIN_PATH}" ]; then
 		echo "Base coin does not exists"
@@ -93,6 +99,7 @@ Reads a config file and creates and compiles Cryptonote coin. "config.json" as d
 
     -h          display this help and exit
     -f          config file
+    -b          branch
     -c          compile arguments
 EOF
 }
@@ -104,13 +111,15 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 CONFIG_FILE='config.json'
 COMPILE_ARGS=''
 
-while getopts "h?f:c:" opt; do
+while getopts "h?f:b:c:" opt; do
     case "$opt" in
     h|\?)
         show_help
         exit 0
         ;;
     f)  CONFIG_FILE=${OPTARG}
+        ;;
+    b)  BRANCH=${OPTARG}
         ;;
     c)  COMPILE_ARGS=${OPTARG}
         ;;
