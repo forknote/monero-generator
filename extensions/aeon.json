@@ -52,10 +52,10 @@
           "marker": "#define DIFFICULTY_CUT                                  60",
           "parameters": {
             "text": [
-              "#define MAINNET_HARDFORK_V1HF  %s"
+              "#define MAINNET_HARDFORK_V1HF  ((uint64_t)(%s))"
             ],
             "replace_text_alt": [
-              "#define MAINNET_HARDFORK_V1HF                18446744073709551615"
+              "#define MAINNET_HARDFORK_V1HF                ((uint64_t)(-1))"
             ],
             "var": "MAINNET_HARDFORK_V1HF"
           }
@@ -129,10 +129,10 @@
           "marker": "#define FEE_PER_KB_OLD",
           "parameters": {
             "text": [
-              "#define NO_FEE_PER_KB_FEE_MAX_HEIGHT                     %s"
+              "#define NO_FEE_PER_KB_FEE_MAX_HEIGHT                     ((uint64_t)(%s))"
             ],
             "replace_text_alt": [
-              "#define NO_FEE_PER_KB_FEE_MAX_HEIGHT                0"
+              "#define NO_FEE_PER_KB_FEE_MAX_HEIGHT                ((uint64_t)(0))"
             ],
             "var": "NO_FEE_PER_KB_FEE_MAX_HEIGHT"
           }
@@ -333,7 +333,7 @@
           "parameters": {
             "text": [
               "bool get_block_reward(size_t median_size, size_t current_block_size, uint64_t already_generated_coins, uint64_t &reward, uint8_t version) {",
-              "  get_block_reward(median_size, current_block_size, already_generated_coins, reward, version, 0);",
+              "  return get_block_reward(median_size, current_block_size, already_generated_coins, reward, version, 0);",
               "}",
               "",
               "bool get_block_reward(size_t median_size, size_t current_block_size, uint64_t already_generated_coins, uint64_t &reward, uint8_t version, size_t height) {"
@@ -512,7 +512,7 @@
             "text": [
               "  bool tx_memory_pool::fill_block_template(block &bl, size_t median_size, uint64_t already_generated_coins, size_t &total_size, uint64_t &fee, uint64_t &expected_reward, uint8_t version)",
               "  {",
-              "    fill_block_template(bl, median_size, already_generated_coins, total_size, fee, expected_reward, version, 0);",
+              "    return fill_block_template(bl, median_size, already_generated_coins, total_size, fee, expected_reward, version, 0);",
               "  }",
               "  bool tx_memory_pool::fill_block_template(block &bl, size_t median_size, uint64_t already_generated_coins, size_t &total_size, uint64_t &fee, uint64_t &expected_reward, uint8_t version, size_t height)"
             ]
@@ -562,7 +562,7 @@
             "text": [
               "",
               "  difficulty_type next_difficulty(std::vector<std::uint64_t> timestamps, std::vector<difficulty_type> cumulative_difficulties, size_t target_seconds) {",
-              "    next_difficulty(timestamps, cumulative_difficulties, target_seconds, 0);",
+              "    return next_difficulty(timestamps, cumulative_difficulties, target_seconds, 0);",
               "  }",
               "",
               "  difficulty_type next_difficulty(std::vector<std::uint64_t> timestamps, std::vector<difficulty_type> cumulative_difficulties, size_t target_seconds, uint64_t height) {"

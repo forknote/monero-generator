@@ -381,6 +381,20 @@
         }
       ]
     },
+    {
+      "path": "/src/cryptonote_basic/cryptonote_basic_impl.cpp",
+      "changes": [
+        {
+          "action": "replace",
+          "marker": "if (base_reward < FINAL_SUBSIDY_PER_MINUTE*target_minutes)",
+          "parameters": {
+            "text": [
+              "    if (base_reward <= FINAL_SUBSIDY_PER_MINUTE*target_minutes)"
+            ]
+          }
+        }
+      ]
+    },
 
     {
       "path": "/src/cryptonote_core/blockchain.cpp",
