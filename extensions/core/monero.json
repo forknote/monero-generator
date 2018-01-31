@@ -494,9 +494,56 @@
         }
       ]
     },
-
-
-
+    {
+      "path": "/src/blockchain_db/blockchain_db.cpp",
+      "changes": [
+        {
+          "description": "Monero fixes should apply to Monero only",
+          "action": "replace",
+          "marker": "if (height() > 202612)",
+          "parameters": {
+            "text": [
+              "    if (height() > 202612 && CRYPTONOTE_NAME == \"monero\")"
+            ]
+          }
+        },
+        {
+          "description": "Monero fixes should apply to Monero only",
+          "action": "replace",
+          "marker": "if (height() > 685498)",
+          "parameters": {
+            "text": [
+              "    if (height() > 685498 && CRYPTONOTE_NAME == \"monero\")"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/src/cryptonote_basic/cryptonote_format_utils.cpp",
+      "changes": [
+        {
+          "description": "Monero fixes should apply to Monero only",
+          "action": "replace",
+          "marker": "if (string_tools::pod_to_hex(block_blob_hash) == correct_blob_hash_202612)",
+          "parameters": {
+            "text": [
+              "    if (string_tools::pod_to_hex(block_blob_hash) == correct_blob_hash_202612 && CRYPTONOTE_NAME == \"monero\")"
+            ]
+          }
+        },
+        {
+          "description": "Monero fixes should apply to Monero only",
+          "action": "replace",
+          "marker": "if (string_tools::pod_to_hex(res) == existing_block_id_202612)",
+          "parameters": {
+            "text": [
+              "    if (string_tools::pod_to_hex(res) == existing_block_id_202612 && CRYPTONOTE_NAME == \"monero\")"
+            ]
+          }
+        }
+      ]
+    },
     {
       "path": "/src/common/dns_utils.cpp",
       "changes": [
@@ -522,7 +569,6 @@
         }
       ]
     },
-
     {
       "path": "/src/blocks/blocks.dat",
       "action": "remove"
