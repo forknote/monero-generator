@@ -158,6 +158,28 @@
         },
         {
           "action": "replace",
+          "marker": "uint32_t const GENESIS_NONCE = 10000;",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "  uint32_t const GENESIS_NONCE = %s;"
+            ],
+            "var": "MAINNET_GENESIS_NONCE"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "    uint32_t const GENESIS_NONCE = 10001;",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "    uint32_t const GENESIS_NONCE = %s;"
+            ],
+            "var": "TESTNET_GENESIS_NONCE"
+          }
+        },
+        {
+          "action": "replace",
           "marker": "#define MONEY_SUPPLY",
           "parameters": {
             "mandatory": false,
@@ -189,8 +211,6 @@
             "var": "FINAL_SUBSIDY_PER_MINUTE"
           }
         },
-
-
         {
           "action": "replace",
           "marker": "#define DIFFICULTY_TARGET_V2",
@@ -213,8 +233,6 @@
             "var": "DIFFICULTY_TARGET_V1"
           }
         },
-
-
         {
           "action": "replace",
           "marker": "#define DIFFICULTY_WINDOW",
@@ -248,7 +266,6 @@
             "var": "DIFFICULTY_LAG"
           }
         },
-
         {
           "action": "replace",
           "marker": "#define CRYPTONOTE_DISPLAY_DECIMAL_POINT",
@@ -280,6 +297,72 @@
               "uint64_t const DEFAULT_DUST_THRESHOLD = ((uint64_t)(%s));"
             ],
             "var": "DEFAULT_DUST_THRESHOLD"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "#define CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V2    60000",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "#define CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V2    %s"
+            ],
+            "var": "CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V2"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "#define CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V1    20000",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "#define CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V1    %s"
+            ],
+            "var": "CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V1"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "#define CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V5    300000",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "#define CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V5    %s"
+            ],
+            "var": "CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V5"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "#define CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW            60",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "#define CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW            %s"
+            ],
+            "var": "CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "#define CRYPTONOTE_DEFAULT_TX_SPENDABLE_AGE             10",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "#define CRYPTONOTE_DEFAULT_TX_SPENDABLE_AGE             %s"
+            ],
+            "var": "CRYPTONOTE_DEFAULT_TX_SPENDABLE_AGE"
+          }
+        },
+        {
+          "action": "replace",
+          "marker": "#define EMISSION_SPEED_FACTOR_PER_MINUTE                (20)",
+          "parameters": {
+            "mandatory": false,
+            "text": [
+              "#define EMISSION_SPEED_FACTOR_PER_MINUTE                (%s)"
+            ],
+            "var": "EMISSION_SPEED_FACTOR_PER_MINUTE"
           }
         }
       ]
@@ -381,6 +464,8 @@
         }
       ]
     },
+
+
     {
       "path": "/src/cryptonote_basic/cryptonote_basic_impl.cpp",
       "changes": [
