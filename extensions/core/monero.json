@@ -147,7 +147,7 @@
         },
         {
           "action": "replace",
-          "marker": "std::string const GENESIS_TX = \"013c01ff0001ffffffffffff0f029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd0880712101168d0c4ca86fb55a4cf6a36d31431be1c53a3bd7411bb24e8832410289fa6f3b\";",
+          "marker": "    std::string const GENESIS_TX = \"013c01ff0001ffffffffffff03029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121017767aafcde9be00dcfd098715ebcf7f410daebc582fda69d24a28e9d0bc890d1\";",
           "parameters": {
             "mandatory": false,
             "text": [
@@ -187,17 +187,6 @@
               "#define MONEY_SUPPLY ((uint64_t)(%s))"
             ],
             "var": "MONEY_SUPPLY"
-          }
-        },
-        {
-          "action": "replace",
-          "marker": "#define EMISSION_SPEED_FACTOR_PER_MINUTE",
-          "parameters": {
-            "mandatory": false,
-            "text": [
-              "#define EMISSION_SPEED_FACTOR_PER_MINUTE (%s)"
-            ],
-            "var": "EMISSION_SPEED_FACTOR"
           }
         },
         {
@@ -377,7 +366,7 @@
           "marker": "(std::set<std::string> full_addrs;)[^@]+(return full_addrs;)",
           "parameters": {
             "text": [
-              "\\1\\n    if (testnet) {\\n    } else {\\n%MAINNET_SEED_NODES%\\n    }\\n    \\2"
+              "\\1\\n    if (nettype == cryptonote::TESTNET) {\\n    } else {\\n%MAINNET_SEED_NODES%\\n    }\\n    \\2"
             ]
           }
         }
@@ -422,10 +411,10 @@
         },
         {
           "action": "replace",
-          "marker": "(bool checkpoints::init_default_checkpoints\\(bool testnet\\))[^@]+(bool checkpoints::load_checkpoints_from_json\\(const std::string &json_hashfile_fullpath\\))",
+          "marker": "(bool checkpoints::init_default_checkpoints\\(network_type nettype\\))[^@]+(bool checkpoints::load_checkpoints_from_json\\(const std::string &json_hashfile_fullpath\\))",
           "parameters": {
             "text": [
-              "\\1\\n{\\n  if (testnet) {\\n    return true;  \\n} \\n%MAINNET_CHECKPOINTS%\\n  return true;\\n}\\n\\n\\2"
+              "\\1\\n{\\n  if (nettype == TESTNET) {\\n    return true;  \\n} \\nif (nettype == STAGENET) {\\n    return true;  \\n} \\n%MAINNET_CHECKPOINTS%\\n  return true;\\n}\\n\\n\\2"
             ]
           }
         }

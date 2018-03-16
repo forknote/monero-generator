@@ -35,6 +35,7 @@ function generate_coin {
 	if [ -d "${BASE_COIN_PATH}" ]; then
 		cd "${BASE_COIN_PATH}"
 		echo "Updating ${__CONFIG_base_coin_name}..."
+		git checkout master
 		git pull
 		cd "${PROJECT_DIR}"
 	else
@@ -88,6 +89,11 @@ function generate_coin {
 		cp ${TEMP_PATH}/src/blocks/* ${NEW_COIN_PATH}/src/blocks
 
 		bash "${SCRIPTS_PATH}/compile.sh" -c "${COMPILE_ARGS}" -z
+	fi
+
+	if [[ ! -z $BRANCH ]]; then
+		cd "${BASE_COIN_PATH}"
+		git checkout master
 	fi
 }
 
